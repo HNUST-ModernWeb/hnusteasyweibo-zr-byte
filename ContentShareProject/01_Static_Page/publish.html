@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>发布内容</title>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">内容分享平台</div>
+        <div>
+            <a href="index.html">首页</a>
+            <a href="publish.html">发布内容</a>
+            <a href="profile.html">个人主页</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-box">
+            <h2 style="margin-bottom:25px">发布新内容</h2>
+            <form id="publishForm">
+                <div class="form-item">
+                    <label>标题</label>
+                    <input type="text" id="title" placeholder="请输入内容标题">
+                    <div class="error-tip" id="titleErr">标题不能为空！</div>
+                </div>
+                <div class="form-item">
+                    <label>内容</label>
+                    <textarea id="content" rows="6" placeholder="请输入内容详情"></textarea>
+                    <div class="error-tip" id="contentErr">内容不能为空，且长度大于5个字符！</div>
+                </div>
+                <button type="submit">提交发布</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('publishForm');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            let flag = true;
+            const title = document.getElementById('title').value.trim();
+            const content = document.getElementById('content').value.trim();
+
+            // 表单验证
+            if (!title) {
+                document.getElementById('titleErr').style.display = 'block';
+                flag = false;
+            } else {
+                document.getElementById('titleErr').style.display = 'none';
+            }
+
+            if (content.length < 5) {
+                document.getElementById('contentErr').style.display = 'block';
+                flag = false;
+            } else {
+                document.getElementById('contentErr').style.display = 'none';
+            }
+
+            if (flag) {
+                alert('发布成功！');
+                location.href = 'index.html';
+            }
+        })
+    </script>
+</body>
+</html>
